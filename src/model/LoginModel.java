@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import controller.LoginController;
-import view.managment.ManagmentFrame;
+import controller.ManagementController;
 
 public class LoginModel extends DatabaseModel{
 	
@@ -41,7 +41,7 @@ public class LoginModel extends DatabaseModel{
 			boolean AdminUserExists = (result.next() ? true : false);
 			if (AdminUserExists) {
 				controller.getFrame().dispose();
-				new ManagmentFrame();
+				new ManagementController();
 			} else {
 				JOptionPane.showMessageDialog(null, "Email or Password incorrect!");
 			}

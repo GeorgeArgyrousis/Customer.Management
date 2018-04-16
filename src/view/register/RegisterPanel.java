@@ -33,7 +33,6 @@ public class RegisterPanel extends JPanel {
 	/* The path to the submit button icon */
 	private String submitPath = "res" + ls + "submit.png";
 
-	
 	private Button register;
 	private Field nameField;
 	private Field surnameField;
