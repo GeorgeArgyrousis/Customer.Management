@@ -1,16 +1,21 @@
 package controller;
 
-import login.LoginFrame;
-import login.LoginPanel;
 import model.LoginModel;
+import view.login.LoginFrame;
+import view.login.LoginPanel;
 
 public class LoginController {
 	
+	/* The login model */
 	private LoginModel model;
 	
+	/* The login frame */
 	private LoginFrame frame;
+	
+	/* The login panel */
 	private LoginPanel panel;
-
+	
+	/* initiate all relevant components */
 	public LoginController() {
 		model = new LoginModel(this);
 		panel = new LoginPanel(this);

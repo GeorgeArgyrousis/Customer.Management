@@ -18,7 +18,7 @@ public class PasswordField extends JPasswordField {
 		setForeground(new Color(255, 255, 255));
 		setBackground(new Color(36, 47, 65));
 		setBorder(null);
-		setBounds(505, 292, 185, 28);
+		setBounds(x, y, width, height);
 		parent.add(this);
 	}
 }

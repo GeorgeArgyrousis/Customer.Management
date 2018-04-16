@@ -1,48 +1,45 @@
 package model;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import connection.DatabaseConnection;
 import controller.LoginController;
-import managment.ManagmentFrame;
+import view.managment.ManagmentFrame;
 
-public class LoginModel {
-
-	private String ls = System.getProperty("file.separator");
-
-	private String dbPath = "db" + ls + "Customers.sqlite";
+public class LoginModel extends DatabaseModel{
+	
+	/* The query used to login into the management view */
 	private String loginQuery = "select ID,Email,Password from Data where ID=? and Email=? and Password=?";
+	
+	/* Check if there is an matching id */
 	private String registeredQuery = "select ID from Data where ID=?";
 	
-	private Connection connection;
+	/* The controller conecting the parts together */
 	private LoginController controller;
 	
+	/* Initiate all relevant components */
 	public LoginModel(LoginController controller) {
+		super();
 		this.controller = controller;
-		this.connection = new DatabaseConnection(dbPath).connectToDatabase();
 		//TODO :: handle with errors;
 	}
 	
 	@SuppressWarnings("deprecation")
+	/* Get the current email and password and check if they match the 
+	 * current admins status. An admin has id number 0 */
 	public void processCredentials() {
 		try {
-			/* What we are asking from the database */
 			PreparedStatement statement = connection.prepareStatement(loginQuery);
 			statement.setString(1, "0");
 			statement.setString(2, controller.getPanel().getEmail().getText());
 			statement.setString(3, controller.getPanel().getPassword().getText());
 
 			ResultSet result = statement.executeQuery();
-			int count = 0;
-			while (result.next()) {
-				count++;
-			}
-			if (count == 1) {
+			boolean AdminUserExists = (result.next() ? true : false);
+			if (AdminUserExists) {
 				controller.getFrame().dispose();
 				new ManagmentFrame();
 			} else {
@@ -50,8 +47,8 @@ public class LoginModel {
 			}
 			result.close();
 			statement.close();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -61,13 +58,10 @@ public class LoginModel {
 			PreparedStatement statement = connection.prepareStatement(registeredQuery);
 			statement.setInt(1, 0);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
-				result.close();
-				statement.close();
-				return false;
-			}
+			boolean exists = (result.next() ? true : false);
 			result.close();
 			statement.close();
+			if (exists) return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
