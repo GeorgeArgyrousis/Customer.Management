@@ -24,7 +24,7 @@ import components.Scroll;
 import components.Separator;
 import controller.ManagementController;
 
-public class ManagementPanel extends JPanel {
+public class ManagementPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	

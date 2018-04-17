@@ -23,7 +23,7 @@ import components.PasswordField;
 import components.Separator;
 import controller.LoginController;
 
-public class LoginPanel extends JPanel {
+public class LoginPanel extends JPanel{
 
 	/* The default version id */
 	private static final long serialVersionUID = 1L;

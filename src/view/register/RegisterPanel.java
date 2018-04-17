@@ -19,7 +19,7 @@ import components.PasswordField;
 import components.Separator;
 import controller.RegisterController;
 
-public class RegisterPanel extends JPanel {
+public class RegisterPanel extends JPanel{
 	
 	/* The default version id */
 	private static final long serialVersionUID = 1L;
@@ -117,6 +117,7 @@ public class RegisterPanel extends JPanel {
 		confirmField.setForeground(silver);
 		confirmField.setCaretColor(silver);
 		confirmField.setBackground(dark);
+		confirmFieldListener();
 
 		register = new Button("", 505, 384, 185, 42, this);
 		register.addIcon(submitPath);
@@ -173,5 +174,16 @@ public class RegisterPanel extends JPanel {
 			return true;
 		}
 		return false;
+	}
+	
+	private void confirmFieldListener() {
+		confirmField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					register();
+				}
+			}
+		});
 	}
 }

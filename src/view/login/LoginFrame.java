@@ -1,35 +1,25 @@
 package view.login;
-import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import components.Frame;
 import controller.LoginController;
 import controller.RegisterController;
 
-public class LoginFrame extends JFrame {
+public class LoginFrame extends Frame {
 
 	/* The default verison ID */
 	private static final long serialVersionUID = 1L;
 	
 	/* The title of the frame */
-	private final String TITLE = "Login | Unnamed";
+	private static final String TITLE = "Login | Unnamed";
 	
 	/* The controller connecting the login */
 	private LoginController controller;
 
 	/* Constructor initiating all relevant components */
 	public LoginFrame(JPanel panel, LoginController controller){
+		super(TITLE, panel);
 		this.controller = controller;
-		setTitle(TITLE);
-		setLayout(new BorderLayout());
-		add(panel, BorderLayout.CENTER);
-		pack();
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setVisible(true);
 		switchFrames();
 	}
 	

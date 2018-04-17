@@ -16,7 +16,7 @@ public class Label extends JLabel{
 
 	public Label(String name, int x, int y, int width, int height, JPanel parent) {
 		setText(name);
-		setFont(new Font("Arial Unicode MS", Font.PLAIN, 18));
+		setFont(new Font("Arial", Font.PLAIN, 18));
 		setBounds(x, y, width, height);
 		parent.add(this);
 	}
